@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<flash_board>
+  <pass>
+    <range>CODE 0x08000000 0x080FFFFF</range>
+    <loader>$PROJ_DIR$\FlashSTM32F74xxG.flash</loader>
+  </pass>
+  <pass>
+    <range>CODE 0x00200000 0x002FFFFF</range>
+    <loader>$PROJ_DIR$\FlashSTM32F74xxG_TCM.flash</loader>
+  </pass>
+  <pass>
+    <range>CODE 0x90000000 0x91FFFFFF</range>
+    <loader>$PROJ_DIR$\FlashSTM32F7xx_QSPI_STM32756G-EVAL.flash</loader>
+  </pass>
+</flash_board>

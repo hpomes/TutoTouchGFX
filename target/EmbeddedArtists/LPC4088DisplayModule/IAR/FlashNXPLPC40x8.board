@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<flash_board>
+  <pass>
+    <range>CODE 0x00000000 0x0007FFFF</range>
+    <loader>$PROJ_DIR$\FlashNXPLPC512K_7x_8x_Cortex.flash</loader>
+  </pass>
+  <pass>
+    <range>CODE 0x28000000 0x28FFFFFF</range>
+    <loader>$PROJ_DIR$\FlashLPC40xx_SPIFI.flash</loader>
+  </pass>
+</flash_board>

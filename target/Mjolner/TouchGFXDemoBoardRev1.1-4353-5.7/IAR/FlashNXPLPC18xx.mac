@@ -1,0 +1,52 @@
+__var CGU_BASE_APB1_CLK;
+__var CGU_BASE_M4_CLK;
+__var CCU_CLK_APB1_BUS_CFG;
+__var CCU_CLK_Mx_BUS_CFG;
+__var CCU_CLK_Mx_MxCORE_CFG;
+__var FLASHCFGA;
+__var FLASHCFGB;
+
+execUserFlashInit()
+{
+  __var Reg;
+  
+  CGU_BASE_APB1_CLK     = __readMemory32(0x40050080, "Memory");
+  CGU_BASE_M4_CLK       = __readMemory32(0x4005006C, "Memory");
+  CCU_CLK_APB1_BUS_CFG  = __readMemory32(0x40051200, "Memory");
+  CCU_CLK_Mx_BUS_CFG    = __readMemory32(0x40051400, "Memory");
+  CCU_CLK_Mx_MxCORE_CFG = __readMemory32(0x40051448, "Memory");
+  FLASHCFGA             = __readMemory32(0x40043120, "Memory");
+  FLASHCFGB             = __readMemory32(0x40043124, "Memory");
+
+  __writeMemory32(((1UL<<11) | (1UL<<24)), 0x40050080, "Memory");  // CGU_BASE_APB1_CLK = 0x1F;
+  __writeMemory32(((1UL<<11) | (1UL<<24)), 0x4005006C, "Memory");  // CGU_BASE_M4_CLK(CGU_OUTCLK_4_CTRL) = 0x1F;
+  __writeMemory32(0x00000001, 0x40051200, "Memory");  // CCU_CLK_APB1_BUS_CFG = 0x01;
+  __writeMemory32(0x00000001, 0x40051400, "Memory");  // CCU_CLK_Mx_BUS_CFG = 0x01;
+  __writeMemory32(0x00000001, 0x40051448, "Memory");  // CCU_CLK_Mx_MxCORE_CFG = 0x01;
+
+  // Init FLASHCFGA register
+  Reg = FLASHCFGA;
+  Reg &= ~(0x0000000F<<12);
+  Reg |=  (0x00000009<<12);
+  Reg |=  (0x80000000);
+  __writeMemory32(Reg, 0x40043120, "Memory");
+
+  // Init FLASHCFGB register
+  Reg = FLASHCFGB;
+  Reg &= ~(0x0000000F<<12);
+  Reg |=  (0x00000009<<12);
+  Reg |=  (0x80000000);
+  __writeMemory32(Reg, 0x40043124, "Memory");
+}
+
+execUserFlashExit()
+{
+  // Restore registers
+  __writeMemory32(CGU_BASE_APB1_CLK, 0x40050080, "Memory");
+  __writeMemory32(CGU_BASE_M4_CLK, 0x4005006C, "Memory");
+  __writeMemory32(CCU_CLK_APB1_BUS_CFG, 0x40051200, "Memory");
+  __writeMemory32(CCU_CLK_Mx_BUS_CFG, 0x40051400, "Memory");
+  __writeMemory32(CCU_CLK_Mx_MxCORE_CFG, 0x40051448, "Memory");
+  __writeMemory32(FLASHCFGA, 0x40043120, "Memory");
+  __writeMemory32(FLASHCFGB, 0x40043124, "Memory");
+}

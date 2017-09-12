@@ -1,0 +1,30 @@
+__Setup()
+{
+  /*Use sysclock for CPU div 1:1*/
+  __writeMemory32(0x00000001, 0x400FC104, "Memory");
+  /*Use IRC oscilator for sysclock*/
+  __writeMemory32(0x00000000, 0x400FC10C, "Memory");
+  /*Use sysclock for SPIFI div 1:1*/
+  __writeMemory32(0x00000001, 0x400FC1B4, "Memory");
+  /*Enable IOCON and SPIFI Clock*/
+  __writeMemory32((1<<15) | (1<<16), 0x400FC0C4, "Memory");
+
+  /*Config IO pins */
+  __writeMemory32(0x00000035, 0x4002C03C, "Memory");  /*SPIFI_IO[2]*/
+  __writeMemory32(0x00000035, 0x4002C040, "Memory");  /*SPIFI_IO[3]*/
+  __writeMemory32(0x00000035, 0x4002C044, "Memory");  /*SPIFI_IO[2]*/
+  __writeMemory32(0x00000035, 0x4002C048, "Memory");  /*SPIFI_IO[0]*/
+  __writeMemory32(0x00000035, 0x4002C058, "Memory");  /*SPIFI_CLK*/
+  __writeMemory32(0x00000035, 0x4002C11C, "Memory");  /*SPIFI_CS*/
+}
+
+execUserReset()
+{
+  __message "----- execUserReset -----\n";
+  __Setup();
+}
+
+execUserFlashInit(){
+  __message "----- execUserFlashInit -----\n";
+  __Setup();
+}
