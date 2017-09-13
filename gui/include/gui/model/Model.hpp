@@ -35,6 +35,13 @@
 #ifndef MODEL_HPP
 #define MODEL_HPP
 
+#include <touchgfx/hal/HAL.hpp>
+
+#ifndef SIMULATOR
+#include "stm32f769i_discovery.h"
+#include "stm32f7xx_hal.h"
+#endif
+
 class ModelListener;
 
 /**
@@ -56,6 +63,7 @@ public:
 
 	bool btnClicked;
 	int acc;
+	bool ledOn;
 
     /**
      * Sets the modelListener to point to the currently active presenter. Called automatically

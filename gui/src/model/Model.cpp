@@ -35,12 +35,34 @@
 #include <gui/model/Model.hpp>
 #include <gui/model/ModelListener.hpp>
 
+#ifndef SIMULATOR
+	#include "stm32f769i_discovery.h"
+#endif
+
 Model::Model() : modelListener(0)
 {
+	#ifndef SIMULATOR
+		BSP_LED_Init(LED1);
+		BSP_LED_Off(LED1);
+	#endif
 	btnClicked = false;
 	acc = 0;
+	ledOn = false;
 }
 
 void Model::tick()
 {
+#ifndef SIMULATOR
+	if (btnClicked && !ledOn)
+	{
+		BSP_LED_On(LED1);
+		ledOn = true;
+	}
+	else if (!btnClicked && ledOn)
+	{
+		BSP_LED_Off(LED1);
+		ledOn = false;
+	}
+#endif
 }
+
