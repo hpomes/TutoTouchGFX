@@ -73,7 +73,7 @@ public:
 			meta::TypeList< FirstView,
 			meta::TypeList< SlideView,
 			meta::Nil
-            >>> ViewTypes;
+            > > > ViewTypes;
 
     /**
      * Determine (compile time) the View type of largest size.
@@ -88,8 +88,7 @@ public:
 			meta::TypeList< FirstPresenter,
 			meta::TypeList< SlidePresenter,
             meta::Nil
-            >>> PresenterTypes;
-
+            > > > PresenterTypes;
     /**
      * Determine (compile time) the Presenter type of largest size.
      */
@@ -103,7 +102,7 @@ public:
 			meta::TypeList< SlideTransition<EAST>,
 			meta::TypeList< SlideTransition<WEST>,
             meta::Nil
-            >>> TransitionTypes;
+            > > > TransitionTypes;
 
     /**
      * Determine (compile time) the Transition type of largest size.
