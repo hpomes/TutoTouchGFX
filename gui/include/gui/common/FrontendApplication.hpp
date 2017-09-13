@@ -67,7 +67,10 @@ public:
      * reuse the same memory as the current ones, so the switch cannot occur instantaneously
      * since that would cause memory corruption at the point of calling this function.
      */
-    void gotoTemplateScreen();
+	void gotoTemplateScreen();
+	void gotoFirstScreen();
+	void gotoSlideScreen();
+
 
     /**
      * Called automatically every frame. Will call tick on the model and then delegate
@@ -82,7 +85,9 @@ private:
     Callback<FrontendApplication> transitionCallback;
     FrontendHeap& frontendHeap;
     Model& model;
-    void gotoTemplateScreenImpl();
+	void gotoTemplateScreenImpl();
+	void gotoFirstScreenImpl();
+	void gotoSlideScreenImpl();
 };
 
 #endif /* FRONTENDAPPLICATION_HPP */

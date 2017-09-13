@@ -75,3 +75,13 @@ void TemplatePresenter::toggle()
 {
 	model->btnClicked = !model->btnClicked;
 }
+
+void TemplatePresenter::goToFirstScreen()
+{
+	static_cast<FrontendApplication*>(Application::getInstance())->gotoFirstScreen();
+}
+
+void TemplatePresenter::goToSlideScreen()
+{
+	static_cast<FrontendApplication*>(Application::getInstance())->gotoSlideScreen();
+}

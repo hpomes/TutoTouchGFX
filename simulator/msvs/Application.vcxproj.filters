@@ -118,6 +118,18 @@
     <Filter Include="Resource Files\gui\fonts">
       <UniqueIdentifier>{69c775af-1aaf-46e6-b939-107b3e28214b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\gui\first_screen">
+      <UniqueIdentifier>{e329f0a0-0209-43e3-b189-6d39a5bac2aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\first_screen">
+      <UniqueIdentifier>{f867a161-9ad3-46f8-a4cc-523d11722890}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui\slide_screen">
+      <UniqueIdentifier>{90d5da82-89b9-44b5-bf05-6aa354ef38bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\slide_screen">
+      <UniqueIdentifier>{3be14afe-4155-4f00-8b2e-a62b67dafb2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\gui\src\common\FrontendApplication.cpp">
@@ -147,6 +159,18 @@
     <ClCompile Include="..\..\gui\src\template_screen\TemplateView.cpp">
       <Filter>Source Files\gui\template_screen</Filter>
     </ClCompile>
+    <ClCompile Include="FirstPresenter.cpp">
+      <Filter>Source Files\gui\first_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="FirstView.cpp">
+      <Filter>Source Files\gui\first_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\slide_screen\SlidePresenter.cpp">
+      <Filter>Source Files\gui\slide_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\slide_screen\SlideView.cpp">
+      <Filter>Source Files\gui\slide_screen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\config\msvs\Application.props">
@@ -155,6 +179,7 @@
     <None Include="..\..\assets\texts\texts.xlsx">
       <Filter>Resource Files\gui\texts</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\gui\include\gui\common\FrontendApplication.hpp">
@@ -570,6 +595,18 @@
     </ClInclude>
     <ClInclude Include="$(TouchGFXReleasePath)\framework\include\touchgfx\widgets\Widget.hpp">
       <Filter>Header Files\TouchGFX\touchgfx\widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstPresenter.hpp">
+      <Filter>Header Files\gui\first_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstView.hpp">
+      <Filter>Header Files\gui\first_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\slide_screen\SlideView.hpp">
+      <Filter>Header Files\gui\slide_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\slide_screen\SlidePresenter.hpp">
+      <Filter>Header Files\gui\slide_screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

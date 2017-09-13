@@ -34,12 +34,19 @@
  *****************************************************************************/
 #include <new>
 #include <gui/common/FrontendApplication.hpp>
+#include <gui/slide_screen/SlideView.hpp>
+#include <gui/slide_screen/SlidePresenter.hpp>
 #include <mvp/View.hpp>
 #include <touchgfx/lcd/LCD.hpp>
 #include <touchgfx/hal/HAL.hpp>
 #include <touchgfx/transitions/NoTransition.hpp>
+#include <touchgfx/transitions/SlideTransition.hpp>
 #include <gui/template_screen/TemplateView.hpp>
+#include <gui/first_screen/FirstView.hpp>
+#include <gui/slide_screen/SlideView.hpp>
 #include <gui/template_screen/TemplatePresenter.hpp>
+#include <gui/first_screen/FirstPresenter.hpp>
+#include <gui/slide_screen/SlidePresenter.hpp>
 #include <gui/common/FrontendHeap.hpp>
 
 using namespace touchgfx;
@@ -64,3 +71,24 @@ void FrontendApplication::gotoTemplateScreenImpl()
     makeTransition< TemplateView, TemplatePresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
+void FrontendApplication::gotoFirstScreen()
+{
+	transitionCallback = touchgfx::Callback< FrontendApplication >(this, &FrontendApplication::gotoFirstScreenImpl);
+	pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplication::gotoFirstScreenImpl()
+{
+	makeTransition< TemplateView, TemplatePresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+void FrontendApplication::gotoSlideScreen()
+{ 
+    transitionCallback = Callback< FrontendApplication >(this, &FrontendApplication::gotoSlideScreenImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplication::gotoSlideScreenImpl()
+{
+    makeTransition< SlideView, SlidePresenter, touchgfx::SlideTransition<EAST>, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}

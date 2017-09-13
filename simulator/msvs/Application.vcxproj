@@ -16,17 +16,24 @@
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\hal\simulator\sdl\HALSDL_icon.cpp" />
     <ClCompile Include="$(TouchGFXReleasePath)\framework\source\platform\hal\simulator\sdl\OSWrappers.cpp" />
     <ClCompile Include="..\..\gui\src\common\FrontendApplication.cpp" />
+    <ClCompile Include="..\..\gui\src\slide_screen\SlidePresenter.cpp" />
+    <ClCompile Include="..\..\gui\src\slide_screen\SlideView.cpp" />
     <ClCompile Include="..\..\gui\src\model\Model.cpp" />
     <ClCompile Include="..\..\gui\src\template_screen\TemplatePresenter.cpp" />
     <ClCompile Include="..\..\gui\src\template_screen\TemplateView.cpp" />
     <ClCompile Include="..\..\simulator\main.cpp" />
+    <ClCompile Include="FirstPresenter.cpp" />
+    <ClCompile Include="FirstView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\assets\texts\texts.xlsx" />
     <None Include="..\..\config\msvs\Application.props" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\gui\include\gui\common\FrontendApplication.hpp" />
+    <ClInclude Include="..\..\gui\include\gui\slide_screen\SlidePresenter.hpp" />
+    <ClInclude Include="..\..\gui\include\gui\slide_screen\SlideView.hpp" />
     <ClInclude Include="..\..\gui\include\gui\common\FrontendHeap.hpp" />
     <ClInclude Include="..\..\gui\include\gui\model\Model.hpp" />
     <ClInclude Include="..\..\gui\include\gui\model\ModelListener.hpp" />
@@ -164,6 +171,8 @@
     <ClInclude Include="$(TouchGFXReleasePath)\framework\include\touchgfx\widgets\ToggleButton.hpp" />
     <ClInclude Include="$(TouchGFXReleasePath)\framework\include\touchgfx\widgets\TouchArea.hpp" />
     <ClInclude Include="$(TouchGFXReleasePath)\framework\include\touchgfx\widgets\Widget.hpp" />
+    <ClInclude Include="FirstPresenter.hpp" />
+    <ClInclude Include="FirstView.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="$(TouchGFXReleasePath)\config\TouchGFX.rc" />

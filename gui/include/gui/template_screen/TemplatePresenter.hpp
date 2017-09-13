@@ -35,6 +35,7 @@
 #ifndef TEMPLATE_PRESENTER_HPP
 #define TEMPLATE_PRESENTER_HPP
 
+#include <gui/common/FrontendApplication.hpp>
 #include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
 
@@ -74,6 +75,9 @@ public:
 	void toggle();
 	void reset();
 	int getAcc();
+
+	void goToFirstScreen();
+	void goToSlideScreen();
 
 private:
     TemplatePresenter();

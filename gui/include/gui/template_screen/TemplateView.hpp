@@ -90,6 +90,8 @@ public:
 	
 private:
 	Box background2;
+	Button goFirst;
+	Button goSlide;
 	Button btn;
 	Button reset;
 	Callback<TemplateView, const AbstractButton&> clickedBtnCb;

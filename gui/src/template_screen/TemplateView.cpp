@@ -43,6 +43,14 @@ void TemplateView::setupScreen()
 	background2.setPosition(0, 0, HAL::DISPLAY_WIDTH, HAL::DISPLAY_HEIGHT);
 	background2.setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
 
+	goFirst.setXY(200, 120);
+	goFirst.setAction(clickedBtnCb);
+	goFirst.setBitmaps(Bitmap(BITMAP_GO_LEFT_ID), Bitmap(BITMAP_GO_RIGHT_ID));
+
+	goSlide.setXY(400, 120);
+	goSlide.setAction(clickedBtnCb);
+	goSlide.setBitmaps(Bitmap(BITMAP_GO_RIGHT_ID), Bitmap(BITMAP_GO_LEFT_ID));
+
 	btn.setXY(400, 240);
 	btn.setAction(clickedBtnCb);
 	btn.setBitmaps(Bitmap(BITMAP_ADD_ID), Bitmap(BITMAP_ADD_PRESSED_ID));
@@ -59,7 +67,8 @@ void TemplateView::setupScreen()
 	count.setColor(Color::getColorFrom24BitRGB(0xFF, 0x00, 0x00));
 	
 	add(background2);
-	
+	add(goFirst);
+	add(goSlide);
 	add(reset);
 	add(btn);
 	add(count);
@@ -83,10 +92,14 @@ void TemplateView::clickedBtn(const AbstractButton &source)
 			background2.setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
 		}
 		background2.invalidate();
-		presenter->toggle();		
+		presenter->toggle();
 	}
 	else if (&source == &reset)
 		presenter->reset();
+	else if (&source == &goFirst)
+		presenter->goToFirstScreen();
+	else if (&source == &goSlide)
+		presenter->goToSlideScreen();
 	
 }
 

@@ -39,10 +39,15 @@
 #include <common/Partition.hpp>
 #include <mvp/MVPHeap.hpp>
 #include <touchgfx/transitions/NoTransition.hpp>
+#include <touchgfx/transitions/SlideTransition.hpp>
 #include <gui/common/FrontendApplication.hpp>
 #include <gui/model/Model.hpp>
 #include <gui/template_screen/TemplateView.hpp>
 #include <gui/template_screen/TemplatePresenter.hpp>
+#include <gui/first_screen/FirstView.hpp>
+#include <gui/first_screen/FirstPresenter.hpp>
+#include <gui/slide_screen/SlidePresenter.hpp>
+#include <gui/slide_screen/SlideView.hpp>
 
 /**
  * This class provides the memory that shall be used for memory allocations
@@ -65,8 +70,10 @@ public:
      * @note All view types used in the application MUST be added to this list!
      */
     typedef meta::TypeList< TemplateView,
-            meta::Nil
-            > ViewTypes;
+			meta::TypeList< FirstView,
+			meta::TypeList< SlideView,
+			meta::Nil
+            >>> ViewTypes;
 
     /**
      * Determine (compile time) the View type of largest size.
@@ -78,8 +85,10 @@ public:
      * @note All presenter types used in the application MUST be added to this list!
      */
     typedef meta::TypeList< TemplatePresenter,
+			meta::TypeList< FirstPresenter,
+			meta::TypeList< SlidePresenter,
             meta::Nil
-            > PresenterTypes;
+            >>> PresenterTypes;
 
     /**
      * Determine (compile time) the Presenter type of largest size.
@@ -91,8 +100,10 @@ public:
      * @note All transition types used in the application MUST be added to this list!
      */
     typedef meta::TypeList< NoTransition,
+			meta::TypeList< SlideTransition<EAST>,
+			meta::TypeList< SlideTransition<WEST>,
             meta::Nil
-            > TransitionTypes;
+            >>> TransitionTypes;
 
     /**
      * Determine (compile time) the Transition type of largest size.
