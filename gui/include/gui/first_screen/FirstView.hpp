@@ -84,7 +84,7 @@ public:
 	virtual void tearDownScreen();
 
 private:
-
+	Box background2;
 };
 
 #endif // First_VIEW_HPP

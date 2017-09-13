@@ -79,7 +79,7 @@ void FrontendApplication::gotoFirstScreen()
 
 void FrontendApplication::gotoFirstScreenImpl()
 {
-	makeTransition< TemplateView, TemplatePresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+	makeTransition< FirstView, FirstPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
 void FrontendApplication::gotoSlideScreen()

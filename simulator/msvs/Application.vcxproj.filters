@@ -159,17 +159,17 @@
     <ClCompile Include="..\..\gui\src\template_screen\TemplateView.cpp">
       <Filter>Source Files\gui\template_screen</Filter>
     </ClCompile>
-    <ClCompile Include="FirstPresenter.cpp">
-      <Filter>Source Files\gui\first_screen</Filter>
-    </ClCompile>
-    <ClCompile Include="FirstView.cpp">
-      <Filter>Source Files\gui\first_screen</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\gui\src\slide_screen\SlidePresenter.cpp">
       <Filter>Source Files\gui\slide_screen</Filter>
     </ClCompile>
     <ClCompile Include="..\..\gui\src\slide_screen\SlideView.cpp">
       <Filter>Source Files\gui\slide_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\first_screen\FirstView.cpp">
+      <Filter>Source Files\gui\first_screen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui\src\first_screen\FirstPresenter.cpp">
+      <Filter>Source Files\gui\first_screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -596,17 +596,17 @@
     <ClInclude Include="$(TouchGFXReleasePath)\framework\include\touchgfx\widgets\Widget.hpp">
       <Filter>Header Files\TouchGFX\touchgfx\widgets</Filter>
     </ClInclude>
-    <ClInclude Include="FirstPresenter.hpp">
-      <Filter>Header Files\gui\first_screen</Filter>
-    </ClInclude>
-    <ClInclude Include="FirstView.hpp">
-      <Filter>Header Files\gui\first_screen</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\slide_screen\SlideView.hpp">
       <Filter>Header Files\gui\slide_screen</Filter>
     </ClInclude>
     <ClInclude Include="..\..\gui\include\gui\slide_screen\SlidePresenter.hpp">
       <Filter>Header Files\gui\slide_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\first_screen\FirstView.hpp">
+      <Filter>Header Files\gui\first_screen</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui\include\gui\first_screen\FirstPresenter.hpp">
+      <Filter>Header Files\gui\first_screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
