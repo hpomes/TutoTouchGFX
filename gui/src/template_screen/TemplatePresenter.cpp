@@ -54,10 +54,18 @@ bool TemplatePresenter::isBtnClicked()
 {
 	return model->btnClicked;
 }
+#include <stdio.h>
 
 void TemplatePresenter::inc()
 {
-	model->acc++;
+	model->acc = model->acc + 0.1f;
+	model->acc = model->acc > 100 ? 100 : model->acc;
+}
+
+void TemplatePresenter::dec()
+{
+	model->acc = model->acc - 0.1f;
+	model->acc = model->acc < 0 ? 0 : model->acc;
 }
 
 void TemplatePresenter::reset()
@@ -66,14 +74,26 @@ void TemplatePresenter::reset()
 	view.setCount(0);
 }
 
-int TemplatePresenter::getAcc()
+float TemplatePresenter::getAcc()
 {
 	return model->acc;
+}
+
+void TemplatePresenter::setAcc(float value)
+{
+	model->acc = value;
 }
 
 void TemplatePresenter::toggle()
 {
 	model->btnClicked = !model->btnClicked;
+}
+
+void TemplatePresenter::pulse()
+{
+#ifndef SIMULATOR
+	model->generatePulsePWM();
+#endif
 }
 
 void TemplatePresenter::goToFirstScreen()

@@ -42,6 +42,8 @@
 #include <touchgfx/widgets/Button.hpp>
 #include <touchgfx/mixins/Draggable.hpp>
 #include <touchgfx/widgets/TextAreaWithWildcard.hpp>
+#include <touchgfx/containers/Slider.hpp>
+#include <touchgfx/widgets/Image.hpp>
 
 using namespace touchgfx;
 
@@ -66,6 +68,7 @@ public:
 
 	TemplateView()
 		: clickedBtnCb(this, &TemplateView::clickedBtn)
+		, sliderCb(this, &TemplateView::sliderHandler)
 	{
 	}
 
@@ -85,7 +88,7 @@ public:
     virtual void tearDownScreen();
 
 	void clickedBtn(const AbstractButton &source);
-	void setCount(int value);
+	void setCount(float value);
 
 	
 private:
@@ -95,8 +98,12 @@ private:
 	Button btn;
 	Button reset;
 	Callback<TemplateView, const AbstractButton&> clickedBtnCb;
+	
  	TextAreaWithOneWildcard count;
-	Unicode::UnicodeChar countTxtbuf[3];
+	Unicode::UnicodeChar countTxtbuf[10];
+	Slider slider;
+	Callback<TemplateView, const Slider&, int> sliderCb;
+	void sliderHandler(const Slider& slider, int value);
 };
 
 #endif // TEMPLATE_VIEW_HPP

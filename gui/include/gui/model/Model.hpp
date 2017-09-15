@@ -36,10 +36,11 @@
 #define MODEL_HPP
 
 #include <touchgfx/hal/HAL.hpp>
+#include <touchgfx/hal/BoardConfiguration.hpp>
 
 #ifndef SIMULATOR
 #include "stm32f769i_discovery.h"
-//#include "stm32f7xx_hal.h"
+#include "stm32f7xx_hal.h"
 #endif
 
 class ModelListener;
@@ -62,8 +63,9 @@ public:
     Model();
 
 	bool btnClicked;
-	int acc;
+	float acc;
 	bool ledOn;
+	
 
     /**
      * Sets the modelListener to point to the currently active presenter. Called automatically
@@ -80,11 +82,24 @@ public:
      * the ModelListener interface.
      */
     void tick();
+	void initPulsePWM();
+	void generatePulsePWM();
+
 protected:
     /**
      * Pointer to the currently active presenter.
      */
     ModelListener* modelListener;
+
+private:
+#ifndef SIMULATOR
+	float dc_SetCompare;
+	GPIO_InitTypeDef GPIO_Init;
+	TIM_Base_InitTypeDef TIM_Base;
+	TIM_HandleTypeDef TIM_Handle;
+	TIM_OC_InitTypeDef TIM_OC;
+#endif
+
 };
 
 #endif /* MODEL_HPP */

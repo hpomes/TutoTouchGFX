@@ -41,7 +41,7 @@ void TemplateView::setupScreen()
 {	
 	
 	background2.setPosition(0, 0, HAL::DISPLAY_WIDTH, HAL::DISPLAY_HEIGHT);
-	background2.setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
+	background2.setColor(Color::getColorFrom24BitRGB(0xAD, 0xAD, 0xAD));
 
 	goFirst.setXY(200, 120);
 	goFirst.setAction(clickedBtnCb);
@@ -63,16 +63,26 @@ void TemplateView::setupScreen()
 	setCount(0);
 	count.setWildcard(countTxtbuf);
 	count.setTypedText(TypedText(T_COUNT));
-	count.setXY(300, 240);
-	count.setColor(Color::getColorFrom24BitRGB(0xFF, 0x00, 0x00));
-	
+	count.setPosition(260, 240, 130, 130);
+	count.setColor(Color::getColorFrom24BitRGB(0x40, 0x40, 0x40));
+
+	slider.setBitmaps(Bitmap(BITMAP_S_ID), Bitmap(BITMAP_S_FULL_ID), Bitmap(BITMAP_CURSOR_ID));
+	slider.setupVerticalSlider(15, 17, 0, 8, 400);
+	slider.setValueRange(0, 100, (int) presenter->getAcc());
+	slider.setNewValueCallback(sliderCb);
+
 	add(background2);
+	add(count);
 	add(goFirst);
 	add(goSlide);
 	add(reset);
 	add(btn);
-	add(count);
-	
+	add(slider);
+}
+
+void TemplateView::sliderHandler(const Slider& slider, int value)
+{
+	setCount((float) value);
 }
 
 void TemplateView::clickedBtn(const AbstractButton &source)
@@ -80,22 +90,32 @@ void TemplateView::clickedBtn(const AbstractButton &source)
 	if (&source == &btn)
 	{
 		presenter->inc();
-		setCount(presenter->getAcc());
+		float temp = presenter->getAcc();
+		
+		slider.setValue((int)presenter->getAcc());
+		setCount(temp);
+		presenter->setAcc(temp);
 		if (!presenter->isBtnClicked())
 		{
 			btn.setBitmaps(Bitmap(BITMAP_ADD_PRESSED_ID), Bitmap(BITMAP_ADD_ID));
-			background2.setColor(Color::getColorFrom24BitRGB(0x00, 0x00, 0x00));
+			background2.setColor(Color::getColorFrom24BitRGB(0xAD, 0xAD, 0xAD));
 		}
 		else
 		{
 			btn.setBitmaps(Bitmap(BITMAP_ADD_ID), Bitmap(BITMAP_ADD_PRESSED_ID));
-			background2.setColor(Color::getColorFrom24BitRGB(0xFF, 0xFF, 0xFF));
+			background2.setColor(Color::getColorFrom24BitRGB(0xAD, 0xAD, 0xAD));
 		}
 		background2.invalidate();
 		presenter->toggle();
 	}
 	else if (&source == &reset)
-		presenter->reset();
+	{
+		presenter->dec();
+		float temp = presenter->getAcc();
+		slider.setValue((int)presenter->getAcc());
+		setCount(temp);
+		presenter->setAcc(temp);
+	}
 	else if (&source == &goFirst)
 		presenter->goToFirstScreen();
 	else if (&source == &goSlide)
@@ -103,10 +123,12 @@ void TemplateView::clickedBtn(const AbstractButton &source)
 	
 }
 
-void TemplateView::setCount(int value)
+void TemplateView::setCount(float value)
 {
-	Unicode::snprintf(countTxtbuf, 3, "%d", value);
+	Unicode::snprintfFloat(countTxtbuf, 10, "%.1f", value);
+	presenter->setAcc(value);
 	count.invalidate();
+	presenter->pulse();
 }
 
 void TemplateView::tearDownScreen()

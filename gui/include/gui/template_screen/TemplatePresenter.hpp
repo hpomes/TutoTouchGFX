@@ -72,9 +72,12 @@ public:
 
 	bool isBtnClicked();
 	void inc();
+	void dec();
 	void toggle();
 	void reset();
-	int getAcc();
+	float getAcc();
+	void setAcc(float value);
+	void pulse();
 
 	void goToFirstScreen();
 	void goToSlideScreen();
